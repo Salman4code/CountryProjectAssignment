@@ -1,0 +1,32 @@
+<div class="card" *ngIf="countryDetail && countryDetail.currencies">
+        <ng-container *ngIf="countryDetail.currencies.length > 0">
+          <div class="card-header">
+            <i class="fa fa-align-justify"></i> Currency List
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Code</th>
+                  <th>Symbol</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let currency of countryDetail.currencies">
+                  <td>{{ currency.name }}</td>
+                  <td>{{ currency.code }}</td>
+                  <td>{{ currency.symbol }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="countryDetail.currencies.length == 0">
+          <div>
+                currencies does not exist
+          </div>
+        </ng-container>
+      </div>
+      
+      

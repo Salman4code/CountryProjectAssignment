@@ -1,0 +1,29 @@
+<div class="card" *ngIf="countryDetail && countryDetail.languages">
+  <ng-container *ngIf="countryDetail.languages.length > 0">
+    <div class="card-header">
+      <i class="fa fa-align-justify"></i> Language List
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Native Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let language of countryDetail.languages">
+            <td>{{ language.name }}</td>
+            <td>{{ language.nativeName }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="countryDetail.languages.length == 0">
+    <div>
+        language does not exist
+    </div>
+  </ng-container>
+</div>
+

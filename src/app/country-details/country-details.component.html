@@ -1,0 +1,40 @@
+<div class="card" *ngIf="countryDetail">
+  <div class="card-header">
+    <i class="fa fa-align-justify"></i> Country Detail
+  </div>
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Country Name</th>
+          <th>{{ countryDetail.name }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Capital</th>
+          <td>{{ countryDetail.capital }}</td>
+        </tr>
+        <tr>
+          <th>Region</th>
+          <td>{{ countryDetail.region }}</td>
+        </tr>
+        <tr>
+          <th>Sub region</th>
+          <td>{{ countryDetail.subregion }}</td>
+        </tr>
+        <tr>
+          <th>Area</th>
+          <td>{{ countryDetail.area }}</td>
+        </tr>
+        <tr>
+          <th>alpha3Code</th>
+          <td>{{ countryDetail.alpha3Code }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="card" *ngIf="!countryDetail">
+  Please select country
+</div>

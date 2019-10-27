@@ -1,0 +1,36 @@
+<app-header
+  [navbarBrandRouterLink]="['/country-details']"
+  [fixed]="true"
+  [sidebarToggler]="'lg'"
+  [asideMenuToggler]="'lg'"
+>
+  <div class="form-group row">
+    <label class="col-md-3 col-form-label" for="countryCode">Select</label>
+    <div class="col-md-9">
+      <select
+        id="countryCode"
+        name="countryCode"
+        (change)="onCountryChange()"
+        class="form-control"
+        [(ngModel)]="selectedCountry"
+      >
+        <option ngValue="Select Country">Select Country</option>
+        <option
+          [ngValue]="country.alpha3Code"
+          *ngFor="let country of countryList"
+          >{{ country.name }}</option
+        >
+      </select>
+    </div>
+  </div>
+</app-header>
+<app-sidebar [fixed]="true" [display]="'lg'">
+  <app-sidebar-nav [navItems]="navItems"></app-sidebar-nav>
+  <!-- [perfectScrollbar]
+      [disabled]="sidebarMinimized" -->
+
+  <!-- <app-sidebar-minimizer></app-sidebar-minimizer> -->
+</app-sidebar>
+<section class="main-container">
+  <router-outlet></router-outlet>
+</section>
