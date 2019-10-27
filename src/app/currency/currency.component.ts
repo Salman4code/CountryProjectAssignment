@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CountryServiceService } from "../service/country-service.service";
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -9,15 +10,24 @@ import { CountryServiceService } from "../service/country-service.service";
 })
 export class CurrencyComponent implements OnInit {
   countryDetail = {};
+  private subscriptions: Subscription = new Subscription();
+  
   constructor(public _countryService: CountryServiceService) { }
 
   ngOnInit() {
-    this.getCountryDetails();
+    this.subscriptions.add(
+    this._countryService.countryCodeValue.subscribe(code => {
+      this.getCountryDetails(code);
+    }))
   }
 
-  getCountryDetails(){
-    this._countryService.getCountryDetails('AFG').subscribe(data =>{
+  getCountryDetails(countryCode){
+    this._countryService.getCountryDetails(countryCode).subscribe(data =>{
       this.countryDetail = data;
     })
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }

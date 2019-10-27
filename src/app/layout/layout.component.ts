@@ -16,6 +16,7 @@ export class LayoutComponent implements OnInit {
   constructor(public _countryService: CountryServiceService) {}
 
   ngOnInit() {
+    this.selectedCountry ='Select Country'
     this.getCountryList();
   }
 
@@ -24,11 +25,10 @@ export class LayoutComponent implements OnInit {
   }
   getCountryList() {
     this._countryService.getCountries().subscribe(data => {
-      console.log(data);
       this.countryList = data;
     });
   }
   onCountryChange() {
-    console.log(this.selectedCountry);
+    this._countryService.updateCountryCode(this.selectedCountry)
   }
 }

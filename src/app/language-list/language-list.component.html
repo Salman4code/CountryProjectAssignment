@@ -22,8 +22,10 @@
   </ng-container>
   <ng-container *ngIf="countryDetail.languages.length == 0">
     <div>
-        language does not exist
+      language does not exist
     </div>
   </ng-container>
 </div>
-
+<ng-container *ngIf="!countryDetail">
+  Please Select Country
+</ng-container>

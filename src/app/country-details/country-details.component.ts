@@ -1,23 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { Subscription } from 'rxjs';
+
 import { CountryServiceService } from "../service/country-service.service";
 
 @Component({
-  selector: 'app-country-details',
-  templateUrl: './country-details.component.html',
-  styleUrls: ['./country-details.component.scss']
+  selector: "app-country-details",
+  templateUrl: "./country-details.component.html",
+  styleUrls: ["./country-details.component.scss"]
 })
 export class CountryDetailsComponent implements OnInit {
+  countryDetail:any;
+  private subscriptions: Subscription = new Subscription();
 
-  countryDetail = {};
-  constructor(public _countryService: CountryServiceService) { }
+  constructor(public _countryService: CountryServiceService) {}
 
   ngOnInit() {
-    this.getCountryDetails();
+    this.subscriptions.add(
+    this._countryService.countryCodeValue.subscribe(code => {
+      this.getCountryDetails(code);
+    }));
   }
-  getCountryDetails(){
-    this._countryService.getCountryDetails('ALB').subscribe(data =>{
-      console.log(data);
+  
+  getCountryDetails(countryCode) {
+    this._countryService.getCountryDetails(countryCode).subscribe(data => {
       this.countryDetail = data;
-    })
+    },err =>{});
   }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
+  }
+
 }
