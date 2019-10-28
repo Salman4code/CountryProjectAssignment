@@ -28,7 +28,7 @@ export class CountryServiceService {
 
   /**
    *
-   * @param value - Updated country code
+   * @param value - Updated 'alpha3code' country code
    */
   updateCountryCode(value: any) {
     this.countryCode.next(value);

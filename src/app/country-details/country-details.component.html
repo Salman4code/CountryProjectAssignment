@@ -13,19 +13,19 @@
       <tbody>
         <tr>
           <th>Capital</th>
-          <td>{{ countryDetail.capital }}</td>
+          <td>{{ countryDetail.capital ? countryDetail.capital : 'Not Available'}}</td>
         </tr>
         <tr>
           <th>Region</th>
-          <td>{{ countryDetail.region }}</td>
+          <td>{{ countryDetail.region ? countryDetail.region : 'Not Available' }}</td>
         </tr>
         <tr>
           <th>Sub region</th>
-          <td>{{ countryDetail.subregion }}</td>
+          <td>{{ countryDetail.subregion ? countryDetail.subregion : 'Not Available'}}</td>
         </tr>
         <tr>
           <th>Area</th>
-          <td>{{ countryDetail.area }}</td>
+          <td>{{ countryDetail.area ? countryDetail.area : 'Not Available'}}</td>
         </tr>
         <tr>
           <th>alpha3Code</th>
@@ -36,5 +36,5 @@
   </div>
 </div>
 <div *ngIf="!countryDetail">
-  Please select country
+  {{errorMessage}}
 </div>

@@ -24,9 +24,12 @@
         </ng-container>
         <ng-container *ngIf="countryDetail.currencies.length == 0">
           <div>
-                currencies does not exist
+                {{errorMessage}}
           </div>
         </ng-container>
+      </div>
+      <div *ngIf="!countryDetail">
+            {{errorMessage}}
       </div>
       
       

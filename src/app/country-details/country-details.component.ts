@@ -10,6 +10,8 @@ import { CountryServiceService } from "../service/country-service.service";
 })
 export class CountryDetailsComponent implements OnInit {
   countryDetail:any;
+  errorMessage='';
+
   private subscriptions: Subscription = new Subscription();
 
   constructor(public _countryService: CountryServiceService) {}
@@ -17,17 +19,28 @@ export class CountryDetailsComponent implements OnInit {
   ngOnInit() {
     this.subscriptions.add(
     this._countryService.countryCodeValue.subscribe(code => {
-      this.getCountryDetails(code);
+      if(code){
+        this.getCountryDetails(code);
+      }
+      else{
+        this.errorMessage='Please select country'
+      }
     }));
   }
-  
+  /**
+   * 
+   * @param countryCode - 'alpha3code'
+   */
   getCountryDetails(countryCode) {
     this._countryService.getCountryDetails(countryCode).subscribe(data => {
       this.countryDetail = data;
-    },err =>{});
+    },err =>{
+      this.errorMessage='Something went wrong'
+    });
   }
 
   ngOnDestroy() {
+    /** unsubcribe observable on component destroy*/
     this.subscriptions.unsubscribe();
   }
 
